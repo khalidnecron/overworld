@@ -12,6 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -60,7 +61,7 @@ public class InfernalReliquary extends TrinketItem {
 								if (!stack.isEmpty() && soundEvent != null) {
 								   player.emitGameEvent(GameEvent.EQUIP);
 								   player.playSound(soundEvent, 1.0F, 1.0F);
-                                   player.setHealth(player.getHealth() - 1);
+                                   player.damage(DamageSource.GENERIC, 1);
 								}
 								stack.setCount(0);
 								return true;
