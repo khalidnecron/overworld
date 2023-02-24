@@ -8,6 +8,7 @@ import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketInventory;
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.TrinketsApi;
+import io.github.overworld.OverWorldMod;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -58,10 +59,12 @@ public class InfernalReliquary extends TrinketItem {
 								ItemStack newStack = stack.copy();
 								inv.setStack(i, newStack);
 								SoundEvent soundEvent = stack.getEquipSound();
+								OverWorldMod.LOGGER.debug("SoundEvent = " + soundEvent.toString());
 								if (!stack.isEmpty() && soundEvent != null) {
 								   player.emitGameEvent(GameEvent.EQUIP);
 								   player.playSound(soundEvent, 1.0F, 1.0F);
                                    player.damage(DamageSource.GENERIC, 1);
+								   OverWorldMod.LOGGER.info("Player was damaged");
 								}
 								stack.setCount(0);
 								return true;

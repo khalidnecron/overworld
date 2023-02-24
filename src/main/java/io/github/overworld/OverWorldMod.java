@@ -16,7 +16,8 @@ import io.github.overworld.items.InfernalReliquary;
 
 public class OverWorldMod implements ModInitializer {
 
-	public static final Logger LOGGER = LoggerFactory.getLogger("overworld");
+	public static final String MOD_ID = "overworld";
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static final InfernalReliquary INFERNAL_RELIQUARY = new InfernalReliquary(
 		new FabricItemSettings().fireproof().rarity(Rarity.EPIC).maxCount(1)
 	);
@@ -25,7 +26,7 @@ public class OverWorldMod implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("Hello Fabric world!");
 
-		Registry.register(Registries.ITEM, new Identifier("overworld", "infernal_reliquary"), INFERNAL_RELIQUARY);
+		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "infernal_reliquary"), INFERNAL_RELIQUARY);
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(content -> { 
 			content.add(INFERNAL_RELIQUARY);
