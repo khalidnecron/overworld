@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.google.common.collect.Multimap;
 
+import dev.emi.trinkets.api.SlotAttributes;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.entity.LivingEntity;
@@ -34,6 +35,9 @@ public class InfernalReliquary extends TrinketItem {
         Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
         
         modifiers.put(EntityAttributes.GENERIC_MAX_HEALTH, new EntityAttributeModifier(uuid, "overworld:max_health", -6,  EntityAttributeModifier.Operation.ADDITION));
+
+        SlotAttributes.addSlotModifier(modifiers, "hand/ring", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
+        SlotAttributes.addSlotModifier(modifiers, "offhand/ring", uuid, 1, EntityAttributeModifier.Operation.ADDITION);
 
         return modifiers;
     }
