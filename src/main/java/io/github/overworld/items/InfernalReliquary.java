@@ -19,6 +19,9 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
 public class InfernalReliquary extends TrinketItem {
@@ -45,6 +48,16 @@ public class InfernalReliquary extends TrinketItem {
         return modifiers;
     }
 
+	@Override
+	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+		ItemStack stack = user.getStackInHand(hand);
+		if(equipItem(user, stack)) {
+			OverWorldMod.LOGGER.info("equipItem was called succesfully");
+			return TypedActionResult.success(stack, world.isClient());
+		}
+		return super.use(world, user, hand);
+	}
+
    
     public static boolean equipItem(PlayerEntity player, ItemStack stack) {
         var optional = TrinketsApi.getTrinketComponent(player);
@@ -59,12 +72,10 @@ public class InfernalReliquary extends TrinketItem {
 								ItemStack newStack = stack.copy();
 								inv.setStack(i, newStack);
 								SoundEvent soundEvent = stack.getEquipSound();
-								OverWorldMod.LOGGER.debug("SoundEvent = " + soundEvent.toString());
 								if (!stack.isEmpty() && soundEvent != null) {
 								   player.emitGameEvent(GameEvent.EQUIP);
 								   player.playSound(soundEvent, 1.0F, 1.0F);
                                    player.damage(DamageSource.GENERIC, 1);
-								   OverWorldMod.LOGGER.info("Player was damaged");
 								}
 								stack.setCount(0);
 								return true;
