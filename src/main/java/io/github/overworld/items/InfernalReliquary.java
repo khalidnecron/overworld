@@ -69,6 +69,8 @@ public class InfernalReliquary extends TrinketItemWithOptionalTooltip {
 
 		tooltip.add(TextOps.withColor("⋢ ", TextOps.color(Formatting.RED)).append(TextOps.translateWithColor("item.overworld.infernal_reliquary.tooltip", TextOps.color(Formatting.GRAY))));
 
+		tooltip.add(Text.literal(" "));
+
 		super.appendTooltip(stack, world, tooltip, context);
 	}
 }
