@@ -1,3 +1,7 @@
 {
-    "item.overworld.infernal_reliquary": "Reliquia Infernal"
+    "item.overworld.infernal_reliquary": "Reliquia Infernal",
+    "item.overworld.infernal_reliquary.tooltip": [
+        {"text": "Tu abuelo no se lo macheteo en el cerro."},
+        {"text": "El vendra a por ti."}
+    ]
 }

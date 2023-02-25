@@ -1,10 +1,13 @@
 package io.github.overworld.items;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.google.common.collect.Multimap;
 
 import dev.emi.trinkets.api.SlotReference;
+import io.wispforest.owo.ops.TextOps;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -15,7 +18,10 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Rarity;
+import net.minecraft.world.World;
 
 
 public class InfernalReliquary extends TrinketItemWithOptionalTooltip {
@@ -56,5 +62,13 @@ public class InfernalReliquary extends TrinketItemWithOptionalTooltip {
 		player.damage(DamageSource.GENERIC, 1);
 
 		super.onEquip(stack, slot, entity);
+	}
+
+	@Override
+	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+
+		tooltip.add(TextOps.withColor("⋢ ", TextOps.color(Formatting.RED)).append(TextOps.translateWithColor("item.overworld.infernal_reliquary.tooltip", TextOps.color(Formatting.GRAY))));
+
+		super.appendTooltip(stack, world, tooltip, context);
 	}
 }
