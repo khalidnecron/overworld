@@ -17,6 +17,11 @@ jobs:
       with:
         java-version: ${{ matrix.java }}
         distribution: 'temurin'
+    - name: make gradle wrapper executable
+      if: ${{ runner.os != 'Windows' }}
+      run: chmod +x ./gradlew
+    - name: build
+      run: ./gradlew build
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
