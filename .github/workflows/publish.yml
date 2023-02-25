@@ -1,17 +1,17 @@
 name: Publish
-
 on:
-  release:
-    types:
-      - 'published'
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
     name: Publish binaries
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
+    - name: validate gradle wrapper
+      uses: gradle/wrapper-validation-action@v1
     - name: setup jdk 17
       uses: actions/setup-java@v3
       with:
