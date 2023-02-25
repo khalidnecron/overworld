@@ -1,6 +1,12 @@
 package io.github.overworld.items;
 
+import java.util.List;
+
 import dev.emi.trinkets.api.TrinketItem;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.world.World;
 
 public class TrinketItemWithOptionalTooltip extends TrinketItem implements ExtendableTooltipProvider {
 
@@ -10,7 +16,11 @@ public class TrinketItemWithOptionalTooltip extends TrinketItem implements Exten
 
     @Override
     public String tooltipTranslationKey() {
-        throw new UnsupportedOperationException("Unimplemented method 'tooltipTranslationKey'");
+        return this.getTranslationKey() + ".tooltip";
     }
     
+    @Override
+    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+    }
 }
