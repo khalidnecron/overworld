@@ -32,7 +32,7 @@ public class InfernalReliquary extends TrinketItemWithOptionalTooltip {
 
 	@Override
 	public boolean hasGlint(ItemStack stack) {
-		return true;
+		return false;
 	}
 
 	@Override
