@@ -12,13 +12,20 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
       - name: Set up JDK 17
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
           java-version: 17
+          distribution: 'temurin'
       - name: Build artifacts
         run: ./gradlew build
       - name: Upload assets to GitHub
+        github-token:
+          action-input:
+            input: repo-token
+            is-default: false
+        permissions:
+          contents: write
+          contents-reason: to delete existing and to upload updated assets
         uses: AButler/upload-release-assets@v2.0
         with:
           files: 'build/libs/*;LICENSE'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
