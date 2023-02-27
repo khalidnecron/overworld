@@ -19,13 +19,9 @@ jobs:
       - name: Build artifacts
         run: ./gradlew build
       - name: Upload assets to GitHub
-        github-token:
-          action-input:
-            input: repo-token
-            is-default: false
+        uses: AButler/upload-release-assets@v2.0
         permissions:
           contents: write
-          contents-reason: to delete existing and to upload updated assets
-        uses: AButler/upload-release-assets@v2.0
         with:
           files: 'build/libs/*;LICENSE'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
