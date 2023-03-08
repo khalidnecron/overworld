@@ -25,6 +25,8 @@ repositories {
 		name = "WispForest"
 		url = "https://maven.wispforest.io" 
 	}
+
+	maven { url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
 }
 
 dependencies {
@@ -40,6 +42,8 @@ dependencies {
 
 	modImplementation annotationProcessor("io.wispforest:owo-lib:${project.owo_version}")
     include "io.wispforest:owo-sentinel:${project.owo_version}"
+
+	modImplementation "software.bernie.geckolib:geckolib-fabric-1.19.3:${project.geckolib_version}"
 
 	// Uncomment the following line to enable the deprecated Fabric API modules. 
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
